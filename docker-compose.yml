@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./peblo_tv_mini.db
+      - LOCAL_STORAGE_PATH=/app/media
+      - CATALOG_STORAGE_PATH=/app/catalog
+      - SEED_FILE_PATH=/app/data/seed_shows.json
+    volumes:
+      - ./media:/app/media
+      - ./catalog:/app/catalog
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  cms:
+    build: ./cms
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  viewer:
+    build: ./viewer
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
