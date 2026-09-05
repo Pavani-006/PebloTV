@@ -1,0 +1,47 @@
+{
+  "validation_report_example": {
+    "can_publish": false,
+    "issue_count": 3,
+    "errors": [
+      {
+        "type": "missing_section",
+        "entity_type": "show",
+        "show_title": "Peblo Kids Adventure",
+        "message": "Published show 'Peblo Kids Adventure' must have a assigned section before publishing."
+      },
+      {
+        "type": "missing_duration",
+        "entity_type": "episode",
+        "show_title": "Space Explorers",
+        "episode_title": "Lost in the Asteroid Belt",
+        "message": "Published episode 'Lost in the Asteroid Belt' must have a valid positive duration."
+      },
+      {
+        "type": "missing_artwork",
+        "entity_type": "show",
+        "show_title": "Space Explorers",
+        "message": "Poster artwork (2:3 aspect ratio) is required for published show 'Space Explorers'."
+      }
+    ]
+  },
+  "required_artwork_specs": {
+    "poster": {
+      "aspect_ratio": "2:3",
+      "target_dimensions": "600x900",
+      "max_bytes": 204800,
+      "allowed_mimetypes": ["image/jpeg", "image/png", "image/webp"]
+    },
+    "banner": {
+      "aspect_ratio": "16:9",
+      "target_dimensions": "1280x720",
+      "max_bytes": 204800,
+      "allowed_mimetypes": ["image/jpeg", "image/png", "image/webp"]
+    },
+    "thumbnail": {
+      "aspect_ratio": "16:9",
+      "target_dimensions": "640x360",
+      "max_bytes": 204800,
+      "allowed_mimetypes": ["image/jpeg", "image/png", "image/webp"]
+    }
+  }
+}

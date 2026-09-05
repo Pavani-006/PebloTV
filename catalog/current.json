@@ -1,0 +1,471 @@
+{
+  "catalog_version": 1,
+  "published_at": "2026-09-05T17:58:52.949461+00:00",
+  "stats": {
+    "show_count": 5,
+    "episode_count": 21
+  },
+  "sections": [
+    {
+      "name": "featured",
+      "shows": [
+        {
+          "id": "084d6ce6-accb-40f6-ac71-92f4e9a18b14",
+          "title": "Moti's Many Lives",
+          "synopsis": "Moti the dog is reborn across India, making new friends in every state.",
+          "category": [
+            "adventure",
+            "india",
+            "friendship"
+          ],
+          "section": "featured",
+          "artwork": {
+            "poster": "/media/68373ee4a44844edb8617e5cd27de235.jpg",
+            "banner": "/media/fa5d0dc3eb5b4deb9aa96f4b4230d2ac.jpg"
+          },
+          "trailers": [],
+          "seasons": [
+            {
+              "season_number": 1,
+              "title": "Season 1",
+              "episodes": [
+                {
+                  "content_group": "motis-many-lives-s01e03",
+                  "title": "A Bridge of Stones",
+                  "description": "Description for A Bridge of Stones",
+                  "duration": 420,
+                  "languages": [
+                    "en",
+                    "hi"
+                  ],
+                  "variants": [
+                    {
+                      "id": "772dff41-c243-44c9-84cb-453765c54c9a",
+                      "language": "en",
+                      "title": "A Bridge of Stones",
+                      "description": "Description for A Bridge of Stones"
+                    },
+                    {
+                      "id": "939d6d52-f4fe-49ba-b0e9-48389e26f0ed",
+                      "language": "hi",
+                      "title": "A Bridge of Stones",
+                      "description": "Description for A Bridge of Stones"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/d28349ad1c964e06b77570f296a1c427.jpg"
+                  }
+                },
+                {
+                  "content_group": "motis-many-lives-s01e05",
+                  "title": "Footprints in Flour",
+                  "description": "Description for Footprints in Flour",
+                  "duration": 510,
+                  "languages": [
+                    "en",
+                    "hi"
+                  ],
+                  "variants": [
+                    {
+                      "id": "9d983d20-9a9d-45a6-a60b-d4784d21b2e1",
+                      "language": "en",
+                      "title": "Footprints in Flour",
+                      "description": "Description for Footprints in Flour"
+                    },
+                    {
+                      "id": "4fec9411-747f-436f-92b3-bef4a309a902",
+                      "language": "hi",
+                      "title": "Footprints in Flour",
+                      "description": "Description for Footprints in Flour"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/fcd8fbb9c29c4967b4424f41b95a55c6.jpg"
+                  }
+                },
+                {
+                  "content_group": "motis-many-lives-s01e07",
+                  "title": "Grandmother's Map",
+                  "description": "Description for Grandmother's Map",
+                  "duration": 480,
+                  "languages": [
+                    "en"
+                  ],
+                  "variants": [
+                    {
+                      "id": "7f128a7d-c8de-4f22-855d-b312bcaabf50",
+                      "language": "en",
+                      "title": "Grandmother's Map",
+                      "description": "Description for Grandmother's Map"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/b51c5c1142674a72951c6564135a0d1e.jpg"
+                  }
+                },
+                {
+                  "content_group": "motis-many-lives-s01e02",
+                  "title": "Rain on the Roof",
+                  "description": "Description for Rain on the Roof",
+                  "duration": 540,
+                  "languages": [
+                    "en",
+                    "hi"
+                  ],
+                  "variants": [
+                    {
+                      "id": "94257a07-5e07-4307-89da-e16596727213",
+                      "language": "en",
+                      "title": "Rain on the Roof",
+                      "description": "Description for Rain on the Roof"
+                    },
+                    {
+                      "id": "d316baab-bb31-4966-b333-83d1dcfeceff",
+                      "language": "hi",
+                      "title": "Rain on the Roof",
+                      "description": "Description for Rain on the Roof"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/ae216be0b3c9456dbbd56706ba570e76.jpg"
+                  }
+                },
+                {
+                  "content_group": "motis-many-lives-s01e09",
+                  "title": "Songs of the Sea",
+                  "description": "Description for Songs of the Sea",
+                  "duration": 420,
+                  "languages": [
+                    "en"
+                  ],
+                  "variants": [
+                    {
+                      "id": "c30c8280-8c38-44ab-84ae-b88048ef7387",
+                      "language": "en",
+                      "title": "Songs of the Sea",
+                      "description": "Description for Songs of the Sea"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/356d729399ae4e14bd4cc5f26c22b9c2.jpg"
+                  }
+                },
+                {
+                  "content_group": "motis-many-lives-s01e01",
+                  "title": "The Lost Kite",
+                  "description": "Description for The Lost Kite",
+                  "duration": 510,
+                  "languages": [
+                    "en",
+                    "hi"
+                  ],
+                  "variants": [
+                    {
+                      "id": "a192ff11-73f0-40b7-a341-5c7ed7f4c708",
+                      "language": "en",
+                      "title": "The Lost Kite",
+                      "description": "Description for The Lost Kite"
+                    },
+                    {
+                      "id": "3d228bd8-a430-4063-8ec8-d535583142e4",
+                      "language": "hi",
+                      "title": "The Lost Kite",
+                      "description": "Description for The Lost Kite"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/ece6e0369ac3460f8071f04b6414d447.jpg"
+                  }
+                },
+                {
+                  "content_group": "motis-many-lives-s01e04",
+                  "title": "The Midnight Market",
+                  "description": "Description for The Midnight Market",
+                  "duration": 600,
+                  "languages": [
+                    "en",
+                    "hi"
+                  ],
+                  "variants": [
+                    {
+                      "id": "013f5e66-2b08-43a0-a296-15f95de7335f",
+                      "language": "en",
+                      "title": "The Midnight Market",
+                      "description": "Description for The Midnight Market"
+                    },
+                    {
+                      "id": "193ea5fa-57d5-4114-9b3a-b795f5ed5f8a",
+                      "language": "hi",
+                      "title": "The Midnight Market",
+                      "description": "Description for The Midnight Market"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/6c28508dcc2049aca0efbc21f8fb0d16.jpg"
+                  }
+                },
+                {
+                  "content_group": "motis-many-lives-s01e10",
+                  "title": "The Paper Boat",
+                  "description": "Description for The Paper Boat",
+                  "duration": 540,
+                  "languages": [
+                    "en"
+                  ],
+                  "variants": [
+                    {
+                      "id": "0769d903-8b5d-4563-be2e-9606eb4a17fe",
+                      "language": "en",
+                      "title": "The Paper Boat",
+                      "description": "Description for The Paper Boat"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/64dde32f86564dac90ef72a5c774a836.jpg"
+                  }
+                },
+                {
+                  "content_group": "motis-many-lives-s01e08",
+                  "title": "The Runaway Cart",
+                  "description": "Description for The Runaway Cart",
+                  "duration": 420,
+                  "languages": [
+                    "en"
+                  ],
+                  "variants": [
+                    {
+                      "id": "109dfd6f-431a-48c6-b5c0-099f059efd02",
+                      "language": "en",
+                      "title": "The Runaway Cart",
+                      "description": "Description for The Runaway Cart"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/92b56acef1be46898d3b1601d74662ff.jpg"
+                  }
+                },
+                {
+                  "content_group": "motis-many-lives-s01e06",
+                  "title": "The Whistling Well",
+                  "description": "Description for The Whistling Well",
+                  "duration": 420,
+                  "languages": [
+                    "en",
+                    "hi"
+                  ],
+                  "variants": [
+                    {
+                      "id": "9aa73ed4-08e6-41f5-aa91-390bbce1c3b9",
+                      "language": "en",
+                      "title": "The Whistling Well",
+                      "description": "Description for The Whistling Well"
+                    },
+                    {
+                      "id": "d67e82fd-ac56-47e7-868c-c958cd336aa3",
+                      "language": "hi",
+                      "title": "The Whistling Well",
+                      "description": "Description for The Whistling Well"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/303a3194f365454b8a359311cc760dc3.jpg"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "series",
+      "shows": [
+        {
+          "id": "6decaeb7-cc6a-4d1f-85ef-950e4de73855",
+          "title": "Curious Cubs",
+          "synopsis": "Two cubs ask big questions about the natural world.",
+          "category": [
+            "science",
+            "nature"
+          ],
+          "section": "series",
+          "artwork": {
+            "poster": "/media/0e4d3c029f3640c1965200f1efdc0381.jpg",
+            "banner": "/media/b7fbb91736634ede9f1ee0efa34445e8.jpg"
+          },
+          "trailers": [],
+          "seasons": [
+            {
+              "season_number": 1,
+              "title": "Season 1",
+              "episodes": [
+                {
+                  "content_group": "curious-cubs-s01e01",
+                  "title": "The Lost Kite",
+                  "description": "Description for The Lost Kite",
+                  "duration": 600,
+                  "languages": [
+                    "en"
+                  ],
+                  "variants": [
+                    {
+                      "id": "7343cfd2-3015-4cc7-ba4e-671c80be25af",
+                      "language": "en",
+                      "title": "The Lost Kite",
+                      "description": "Description for The Lost Kite"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/dcc2e05935d54ad3b11c9daf3e9f1f4f.jpg"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3b091671-b41b-4814-833d-b0bce55af1ef",
+          "title": "Number Nest",
+          "synopsis": "Playful stories that sneak in early number sense.",
+          "category": [
+            "maths",
+            "learning"
+          ],
+          "section": "series",
+          "artwork": {
+            "poster": "/media/19f19be4132a40679a282dfd8804f3e5.jpg",
+            "banner": "/media/6100181c1e034b2197c2f1588d1e53f3.jpg"
+          },
+          "trailers": [],
+          "seasons": [
+            {
+              "season_number": 1,
+              "title": "Season 1",
+              "episodes": [
+                {
+                  "content_group": "number-nest-s01e01",
+                  "title": "The Lost Kite",
+                  "description": "Description for The Lost Kite",
+                  "duration": 420,
+                  "languages": [
+                    "en"
+                  ],
+                  "variants": [
+                    {
+                      "id": "0b35cfd4-c150-4234-ad47-216cbbffe727",
+                      "language": "en",
+                      "title": "The Lost Kite",
+                      "description": "Description for The Lost Kite"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/2f2a45d1a6a048b08752468c1916e3bd.jpg"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "52aa9395-3a26-40f3-8b09-92b36134a137",
+          "title": "Tiny Tales by Banyan Dadi",
+          "synopsis": "Banyan Dadi tells short bedtime tales under the old banyan tree.",
+          "category": [
+            "stories",
+            "values",
+            "folk"
+          ],
+          "section": "series",
+          "artwork": {
+            "poster": "/media/9d7669f58e1745dca03a450b652ef159.jpg",
+            "banner": "/media/8f41c37405e743bfb30dd1424a6f5948.jpg"
+          },
+          "trailers": [],
+          "seasons": [
+            {
+              "season_number": 1,
+              "title": "Season 1",
+              "episodes": [
+                {
+                  "content_group": "tiny-tales-banyan-dadi-s01e01",
+                  "title": "The Lost Kite",
+                  "description": "Description for The Lost Kite",
+                  "duration": 540,
+                  "languages": [
+                    "en",
+                    "hi"
+                  ],
+                  "variants": [
+                    {
+                      "id": "99f4b9ee-67c7-44d8-b0a5-cfc81892458e",
+                      "language": "en",
+                      "title": "The Lost Kite",
+                      "description": "Description for The Lost Kite"
+                    },
+                    {
+                      "id": "ac5b8d88-e1bf-45aa-81c3-8c51e4c0c93a",
+                      "language": "hi",
+                      "title": "The Lost Kite",
+                      "description": "Description for The Lost Kite"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/c67ad15ab3454d84801f363e242de361.jpg"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "songs",
+      "shows": [
+        {
+          "id": "cd0e4142-3e46-4055-9d83-41d3fc76e449",
+          "title": "Peblo Songs",
+          "synopsis": "Catchy singalongs for little learners.",
+          "category": [
+            "music",
+            "singalong"
+          ],
+          "section": "songs",
+          "artwork": {
+            "poster": "/media/57e351900985447b96f53d54e2b46ecd.jpg",
+            "banner": "/media/a780cc6b14a84785aff6f29761eb3bb9.jpg"
+          },
+          "trailers": [],
+          "seasons": [
+            {
+              "season_number": 1,
+              "title": "Season 1",
+              "episodes": [
+                {
+                  "content_group": "peblo-songs-s01e01",
+                  "title": "The Lost Kite",
+                  "description": "Description for The Lost Kite",
+                  "duration": 420,
+                  "languages": [
+                    "en"
+                  ],
+                  "variants": [
+                    {
+                      "id": "f1d2e04b-f0bc-4035-a3a6-2e3b26410b85",
+                      "language": "en",
+                      "title": "The Lost Kite",
+                      "description": "Description for The Lost Kite"
+                    }
+                  ],
+                  "artwork": {
+                    "thumbnail": "/media/bce2146de3844b09af69face11dc3e34.jpg"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
