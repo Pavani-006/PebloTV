@@ -2154,30 +2154,6 @@
     ]
   },
   {
-    "episode_id": "ep_9001",
-    "show_title": "Moti's Many Lives",
-    "slug": "motis-many-lives",
-    "section": "featured",
-    "categories": [
-      "adventure",
-      "india",
-      "friendship"
-    ],
-    "synopsis": "Moti the dog is reborn across India, making new friends in every state.",
-    "season_number": 1,
-    "episode_number": 2,
-    "episode_title": "The Lost Kite (v2)",
-    "duration_seconds": 660,
-    "language": "hi",
-    "content_group": "motis-many-lives-s01e02",
-    "status": "published",
-    "artwork_available": [
-      "poster",
-      "banner",
-      "thumbnail"
-    ]
-  },
-  {
     "episode_id": "ep_0093",
     "show_title": "Moti's Many Lives",
     "slug": "motis-many-lives",

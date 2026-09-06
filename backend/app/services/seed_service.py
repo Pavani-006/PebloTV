@@ -8,6 +8,17 @@ from sqlalchemy.orm import Session
 from app.models import Show, Season, Episode, Artwork
 from app.storage import get_storage
 
+def validate_seed_items(raw_items: list[dict]) -> None:
+    seen_keys = set()
+    for index, item in enumerate(raw_items):
+        key = (item.get("content_group"), item.get("language", "en"))
+        if key in seen_keys:
+            raise ValueError(
+                f"Duplicate seed episode key at row {index}: "
+                f"content_group={key[0]!r}, language={key[1]!r}"
+            )
+        seen_keys.add(key)
+
 def create_sample_artwork_file(width: int, height: int, color: tuple, label: str = "") -> bytes:
     img = Image.new("RGB", (width, height))
     draw = ImageDraw.Draw(img)
@@ -41,7 +52,13 @@ def seed_database_if_empty(db: Session, seed_json_path: str):
     with open(seed_json_path, "r", encoding="utf-8") as f:
         raw_items = json.load(f)
 
+    validate_seed_items(raw_items)
+
     storage = get_storage()
+    existing_episode_keys = {
+        (content_group, language)
+        for content_group, language in db.query(Episode.content_group, Episode.language).all()
+    }
 
     shows_map = {} # title -> Show
     seasons_map = {} # (show_title, season_number) -> Season
@@ -100,6 +117,10 @@ def seed_database_if_empty(db: Session, seed_json_path: str):
         season = seasons_map[s_key]
 
         # 3. Episode setup
+        episode_key = (item.get("content_group"), item.get("language", "en"))
+        if episode_key in existing_episode_keys:
+            continue
+
         ep = Episode(
             season_id=season.id,
             episode_number=item.get("episode_number", 1),
@@ -112,6 +133,7 @@ def seed_database_if_empty(db: Session, seed_json_path: str):
         )
         db.add(ep)
         db.flush()
+        existing_episode_keys.add(episode_key)
 
         # Episode Artwork
         art_types = item.get("artwork_available", [])
