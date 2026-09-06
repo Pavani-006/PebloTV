@@ -1,16 +1,30 @@
 import os
 import json
 import io
+import hashlib
 from PIL import Image
+from PIL import ImageDraw
 from sqlalchemy.orm import Session
 from app.models import Show, Season, Episode, Artwork
 from app.storage import get_storage
 
-def create_sample_artwork_file(width: int, height: int, color: tuple) -> bytes:
-    img = Image.new("RGB", (width, height), color=color)
+def create_sample_artwork_file(width: int, height: int, color: tuple, label: str = "") -> bytes:
+    img = Image.new("RGB", (width, height))
+    draw = ImageDraw.Draw(img)
+    accent = tuple(min(channel + 55, 255) for channel in color)
+    for y in range(height):
+        ratio = y / max(height - 1, 1)
+        row_color = tuple(int(color[i] * (1 - ratio) + accent[i] * ratio) for i in range(3))
+        draw.line((0, y, width, y), fill=row_color)
+    if label:
+        draw.text((width * 0.06, height * 0.82), label[:28], fill="white")
     buf = io.BytesIO()
     img.save(buf, format="JPEG")
     return buf.getvalue()
+
+def color_for_key(key: str) -> tuple:
+    digest = hashlib.md5(key.encode("utf-8")).digest()
+    return tuple(45 + (digest[index] % 120) for index in range(3))
 
 def seed_database_if_empty(db: Session, seed_json_path: str):
     existing_shows = db.query(Show).count()
@@ -24,11 +38,6 @@ def seed_database_if_empty(db: Session, seed_json_path: str):
         raw_items = json.load(f)
 
     storage = get_storage()
-
-    # Pre-generate sample artwork bytes
-    poster_bytes = create_sample_artwork_file(600, 900, (41, 128, 185))
-    banner_bytes = create_sample_artwork_file(1280, 720, (142, 68, 173))
-    thumb_bytes = create_sample_artwork_file(640, 360, (39, 174, 96))
 
     shows_map = {} # title -> Show
     seasons_map = {} # (show_title, season_number) -> Season
@@ -53,12 +62,15 @@ def seed_database_if_empty(db: Session, seed_json_path: str):
 
             # Seed Show Artwork if requested
             art_types = item.get("artwork_available", [])
+            show_color = color_for_key(show_title)
             if "poster" in art_types:
+                poster_bytes = create_sample_artwork_file(600, 900, show_color, show_title)
                 buf = io.BytesIO(poster_bytes)
                 key = storage.save(buf, f"show_{show.id}_poster.jpg")
                 art = Artwork(show_id=show.id, type="poster", storage_key=key, width=600, height=900, size_bytes=len(poster_bytes), mime_type="image/jpeg")
                 db.add(art)
             if "banner" in art_types:
+                banner_bytes = create_sample_artwork_file(1280, 720, show_color, show_title)
                 buf = io.BytesIO(banner_bytes)
                 key = storage.save(buf, f"show_{show.id}_banner.jpg")
                 art = Artwork(show_id=show.id, type="banner", storage_key=key, width=1280, height=720, size_bytes=len(banner_bytes), mime_type="image/jpeg")
@@ -100,6 +112,7 @@ def seed_database_if_empty(db: Session, seed_json_path: str):
         # Episode Artwork
         art_types = item.get("artwork_available", [])
         if "thumbnail" in art_types:
+            thumb_bytes = create_sample_artwork_file(640, 360, color_for_key(item.get("content_group", ep.id)), item.get("episode_title", ""))
             buf = io.BytesIO(thumb_bytes)
             key = storage.save(buf, f"ep_{ep.id}_thumb.jpg")
             art = Artwork(episode_id=ep.id, type="thumbnail", storage_key=key, width=640, height=360, size_bytes=len(thumb_bytes), mime_type="image/jpeg")
