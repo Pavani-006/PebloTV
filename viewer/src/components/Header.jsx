@@ -1,9 +1,23 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Tv, Search, Flame } from 'lucide-react';
 
 export default function Header({ searchQuery, setSearchQuery }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const section = new URLSearchParams(location.search).get('section');
+  const activeNavKey = location.pathname === '/'
+    ? 'home'
+    : location.pathname === '/search'
+      ? section
+      : null;
+
+  const navItems = [
+    { key: 'home', label: 'Home', to: '/' },
+    { key: 'series', label: 'Series', to: '/search?section=series' },
+    { key: 'minisodes', label: 'Minisodes', to: '/search?section=minisodes' },
+    { key: 'songs', label: 'Singalongs', to: '/search?section=songs' }
+  ];
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -37,11 +51,17 @@ export default function Header({ searchQuery, setSearchQuery }) {
           </span>
         </Link>
 
-        <nav style={{ display: 'flex', gap: '24px', fontSize: '0.95rem', fontWeight: 500 }}>
-          <Link to="/" style={{ color: 'white' }}>Home</Link>
-          <Link to="/search?section=series" style={{ color: 'var(--text-muted)' }}>Series</Link>
-          <Link to="/search?section=minisodes" style={{ color: 'var(--text-muted)' }}>Minisodes</Link>
-          <Link to="/search?section=songs" style={{ color: 'var(--text-muted)' }}>Singalongs</Link>
+        <nav className="main-nav">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.key}
+              className={`nav-link${activeNavKey === item.key ? ' nav-link-active' : ''}`}
+              to={item.to}
+              end={item.key === 'home'}
+            >
+              {item.label}
+            </NavLink>
+          ))}
         </nav>
       </div>
 

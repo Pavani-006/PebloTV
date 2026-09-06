@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
-import { X, Play, Clock, Globe, Film, Sparkles } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { X, Play, Clock, Globe, Film, Sparkles, ChevronDown } from 'lucide-react';
 
 export default function ShowDetailModal({ show, onClose }) {
   if (!show) return null;
 
   const [activeTab, setActiveTab] = useState(show.seasons?.[0]?.season_number || (show.trailers?.length > 0 ? 0 : 1));
   const [selectedLanguage, setSelectedLanguage] = useState('all');
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+  const languageMenuRef = useRef(null);
+
+  useEffect(() => {
+    const closeLanguageMenu = (event) => {
+      if (!languageMenuRef.current?.contains(event.target)) {
+        setIsLanguageMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', closeLanguageMenu);
+    return () => document.removeEventListener('mousedown', closeLanguageMenu);
+  }, []);
 
   const currentSeason = show.seasons?.find(s => s.season_number === activeTab);
   const trailers = show.trailers || [];
@@ -21,12 +34,15 @@ export default function ShowDetailModal({ show, onClose }) {
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
           <button
+            type="button"
             onClick={onClose}
+            aria-label="Close show details"
             style={{
               position: 'absolute', top: '16px', right: '16px',
               background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.2)',
               borderRadius: '50%', width: '36px', height: '36px',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white'
+              display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white',
+              zIndex: 2
             }}
           >
             <X size={20} />
@@ -68,15 +84,41 @@ export default function ShowDetailModal({ show, onClose }) {
             {/* Language filter for active season */}
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Globe size={16} color="var(--text-muted)" />
-              <select
-                value={selectedLanguage}
-                onChange={e => setSelectedLanguage(e.target.value)}
-                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'white', padding: '6px 12px', borderRadius: '8px', fontSize: '0.85rem' }}
-              >
-                <option value="all">All Audio Languages</option>
-                <option value="en">English (en)</option>
-                <option value="hi">Hindi (hi)</option>
-              </select>
+              <div className="audio-language-select" ref={languageMenuRef}>
+                <button
+                  type="button"
+                  className="audio-language-trigger"
+                  aria-haspopup="listbox"
+                  aria-expanded={isLanguageMenuOpen}
+                  onClick={() => setIsLanguageMenuOpen(open => !open)}
+                >
+                  {selectedLanguage === 'all' ? 'All Audio Languages' : `${selectedLanguage === 'en' ? 'English' : 'Hindi'} (${selectedLanguage})`}
+                  <ChevronDown size={14} aria-hidden="true" />
+                </button>
+                {isLanguageMenuOpen && (
+                  <div className="audio-language-menu" role="listbox" aria-label="Audio language">
+                    {[
+                      ['all', 'All Audio Languages'],
+                      ['en', 'English (en)'],
+                      ['hi', 'Hindi (hi)']
+                    ].map(([value, label]) => (
+                      <button
+                        type="button"
+                        role="option"
+                        aria-selected={selectedLanguage === value}
+                        className={`audio-language-option${selectedLanguage === value ? ' selected' : ''}`}
+                        key={value}
+                        onClick={() => {
+                          setSelectedLanguage(value);
+                          setIsLanguageMenuOpen(false);
+                        }}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
