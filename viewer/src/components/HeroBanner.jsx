@@ -5,7 +5,8 @@ export default function HeroBanner({ show, onSelectShow, onPlayShow }) {
   if (!show) return null;
 
   const [bannerSourceIndex, setBannerSourceIndex] = useState(0);
-  const bannerSources = [show.artwork?.banner, show.artwork?.poster].filter(Boolean);
+  const motiHero = show.title === "Moti's Many Lives" ? '/moti-hero.jpg' : null;
+  const bannerSources = [motiHero, show.artwork?.banner, show.artwork?.poster].filter(Boolean);
   const bannerUrl = bannerSources[bannerSourceIndex];
 
   return (
@@ -21,6 +22,7 @@ export default function HeroBanner({ show, onSelectShow, onPlayShow }) {
     }}>
       {bannerUrl ? (
         <img
+          className="hero-banner-image"
           src={bannerUrl}
           alt={show.title}
           onError={() => setBannerSourceIndex(index => index + 1)}
