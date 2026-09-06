@@ -12,6 +12,14 @@ const TRAILER_SOURCES = {
   }
 };
 
+export function getTrailersForShow(show) {
+  if (show?.trailers?.length) {
+    return show.trailers;
+  }
+
+  return TRAILER_SOURCES[show?.title] ? [TRAILER_SOURCES[show.title]] : [];
+}
+
 function normalizeMediaUrls(value) {
   if (typeof value === 'string' && value.startsWith('/media/')) {
     return `${API_BASE_URL}${value}`;

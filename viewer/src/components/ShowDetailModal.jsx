@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { X, Play, Clock, Globe, Film, Sparkles, ChevronDown } from 'lucide-react';
+import { getTrailersForShow } from '../api/catalog';
 import VideoPlayerModal from './VideoPlayerModal';
 
 export default function ShowDetailModal({ show, onClose }) {
@@ -23,7 +24,7 @@ export default function ShowDetailModal({ show, onClose }) {
   }, []);
 
   const currentSeason = show.seasons?.find(s => s.season_number === activeTab);
-  const trailers = show.trailers || [];
+  const trailers = getTrailersForShow(show);
 
   return (
     <div className="modal-overlay" onClick={onClose}>
