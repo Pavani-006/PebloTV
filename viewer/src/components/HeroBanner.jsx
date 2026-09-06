@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Play, Info, Sparkles } from 'lucide-react';
 
-export default function HeroBanner({ show, onSelectShow }) {
+export default function HeroBanner({ show, onSelectShow, onPlayShow }) {
   if (!show) return null;
 
   const fallbackBannerUrl = 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1600&q=80';
@@ -75,7 +75,7 @@ export default function HeroBanner({ show, onSelectShow }) {
 
         <div style={{ display: 'flex', gap: '16px' }}>
           <button
-            onClick={() => onSelectShow(show)}
+            onClick={() => onPlayShow(show)}
             style={{
               background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-pink))',
               color: 'white',

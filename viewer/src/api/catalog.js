@@ -1,4 +1,7 @@
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '');
+const VIDEO_SOURCES = {
+  "Moti's Many Lives": 'https://www.youtube.com/embed/1p7HEhdzVf4'
+};
 
 function normalizeMediaUrls(value) {
   if (typeof value === 'string' && value.startsWith('/media/')) {
@@ -10,9 +13,15 @@ function normalizeMediaUrls(value) {
   }
 
   if (value && typeof value === 'object') {
-    return Object.fromEntries(
+    const normalized = Object.fromEntries(
       Object.entries(value).map(([key, nestedValue]) => [key, normalizeMediaUrls(nestedValue)])
     );
+
+    if (normalized.title && !normalized.video_url && VIDEO_SOURCES[normalized.title]) {
+      normalized.video_url = VIDEO_SOURCES[normalized.title];
+    }
+
+    return normalized;
   }
 
   return value;

@@ -3,6 +3,7 @@ import { fetchCatalog } from '../api/catalog';
 import HeroBanner from '../components/HeroBanner';
 import ShowCard from '../components/ShowCard';
 import ShowDetailModal from '../components/ShowDetailModal';
+import VideoPlayerModal from '../components/VideoPlayerModal';
 import { Flame, Sparkles, Film, Music, Tv } from 'lucide-react';
 
 export default function HomePage({ searchQuery }) {
@@ -10,6 +11,7 @@ export default function HomePage({ searchQuery }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedShow, setSelectedShow] = useState(null);
+  const [playingShow, setPlayingShow] = useState(null);
   const [activeCategory, setActiveCategory] = useState('all');
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export default function HomePage({ searchQuery }) {
   return (
     <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '32px 40px 80px' }}>
       {/* Featured Hero Banner */}
-      <HeroBanner show={featuredShow} onSelectShow={setSelectedShow} />
+      <HeroBanner show={featuredShow} onSelectShow={setSelectedShow} onPlayShow={setPlayingShow} />
 
       {/* Category Pills Bar */}
       <div style={{ display: 'flex', gap: '10px', overflowX: 'auto', paddingBottom: '16px', marginBottom: '40px' }}>
@@ -77,6 +79,9 @@ export default function HomePage({ searchQuery }) {
       {/* Detail Modal */}
       {selectedShow && (
         <ShowDetailModal show={selectedShow} onClose={() => setSelectedShow(null)} />
+      )}
+      {playingShow && (
+        <VideoPlayerModal show={playingShow} onClose={() => setPlayingShow(null)} />
       )}
     </div>
   );

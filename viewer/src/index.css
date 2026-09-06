@@ -128,6 +128,48 @@ button {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
 }
 
+.video-player-modal {
+  padding: 20px;
+}
+
+.video-player-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.video-player-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.video-player-header button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-main);
+}
+
+.video-player-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.video-player-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* Category Pill */
 .category-pill {
   padding: 6px 16px;
