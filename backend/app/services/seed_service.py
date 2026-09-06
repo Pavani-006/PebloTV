@@ -26,6 +26,10 @@ def color_for_key(key: str) -> tuple:
     digest = hashlib.md5(key.encode("utf-8")).digest()
     return tuple(45 + (digest[index] % 120) for index in range(3))
 
+def purple_color_for_key(key: str) -> tuple:
+    digest = hashlib.md5(key.encode("utf-8")).digest()
+    return (70 + (digest[0] % 65), 35 + (digest[1] % 40), 125 + (digest[2] % 90))
+
 def seed_database_if_empty(db: Session, seed_json_path: str):
     existing_shows = db.query(Show).count()
     if existing_shows > 0:
@@ -112,7 +116,7 @@ def seed_database_if_empty(db: Session, seed_json_path: str):
         # Episode Artwork
         art_types = item.get("artwork_available", [])
         if "thumbnail" in art_types:
-            thumb_bytes = create_sample_artwork_file(640, 360, color_for_key(item.get("content_group", ep.id)), item.get("episode_title", ""))
+            thumb_bytes = create_sample_artwork_file(640, 360, purple_color_for_key(item.get("content_group", ep.id)), item.get("episode_title", ""))
             buf = io.BytesIO(thumb_bytes)
             key = storage.save(buf, f"ep_{ep.id}_thumb.jpg")
             art = Artwork(episode_id=ep.id, type="thumbnail", storage_key=key, width=640, height=360, size_bytes=len(thumb_bytes), mime_type="image/jpeg")
