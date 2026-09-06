@@ -6,7 +6,8 @@ import VideoPlayerModal from './VideoPlayerModal';
 export default function ShowDetailModal({ show, onClose }) {
   if (!show) return null;
 
-  const [activeTab, setActiveTab] = useState(show.seasons?.[0]?.season_number || (show.trailers?.length > 0 ? 0 : 1));
+  const trailers = getTrailersForShow(show);
+  const [activeTab, setActiveTab] = useState(trailers?.length > 0 ? 0 : (show.seasons?.[0]?.season_number || 1));
   const [selectedLanguage, setSelectedLanguage] = useState('all');
   const [playingTrailer, setPlayingTrailer] = useState(null);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
@@ -24,7 +25,6 @@ export default function ShowDetailModal({ show, onClose }) {
   }, []);
 
   const currentSeason = show.seasons?.find(s => s.season_number === activeTab);
-  const trailers = getTrailersForShow(show);
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -64,6 +64,16 @@ export default function ShowDetailModal({ show, onClose }) {
 
           {/* Season Selector Tabs */}
           <div style={{ display: 'flex', gap: '12px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '12px', marginBottom: '24px' }}>
+            {trailers.length > 0 && (
+              <button
+                onClick={() => setActiveTab(0)}
+                className={`category-pill ${activeTab === 0 ? 'active' : ''}`}
+                style={{ borderColor: 'var(--accent-pink)' }}
+              >
+                <Sparkles size={14} style={{ display: 'inline', marginRight: '4px' }} /> Season 0
+              </button>
+            )}
+
             {(show.seasons || []).map(s => (
               <button
                 key={s.season_number}
@@ -73,16 +83,6 @@ export default function ShowDetailModal({ show, onClose }) {
                 Season {s.season_number}
               </button>
             ))}
-
-            {trailers.length > 0 && (
-              <button
-                onClick={() => setActiveTab(0)}
-                className={`category-pill ${activeTab === 0 ? 'active' : ''}`}
-                style={{ borderColor: 'var(--accent-pink)' }}
-              >
-                <Sparkles size={14} style={{ display: 'inline', marginRight: '4px' }} /> Season 0 (Trailers)
-              </button>
-            )}
 
             {/* Language filter for active season */}
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px' }}>
