@@ -51,6 +51,18 @@ button {
   font-weight: 500;
 }
 
+.mobile-menu-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
 .nav-link {
   color: var(--text-muted);
   transition: color 0.2s ease, text-shadow 0.2s ease;
@@ -90,6 +102,36 @@ button {
   height: 100%;
   object-fit: cover;
   background: linear-gradient(135deg, rgba(6, 182, 212, 0.8), rgba(59, 130, 246, 0.5));
+}
+
+.poster-artwork-fallback,
+.hero-artwork-fallback,
+.detail-artwork-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  background: linear-gradient(135deg, #20283a, #101522);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.hero-artwork-fallback {
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.detail-artwork-fallback {
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  font-size: 1.25rem;
 }
 
 .poster-overlay {
@@ -168,6 +210,201 @@ button {
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+.show-grid {
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .header-glass {
+    padding: 12px 16px !important;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header-glass > div:first-child {
+    flex: 1;
+    min-width: 0;
+    gap: 0 !important;
+  }
+
+  .header-glass > div:first-child > a span {
+    font-size: 1.15rem !important;
+  }
+
+  .header-glass > div:first-child > a > div {
+    padding: 8px !important;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .main-nav {
+    display: none;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px;
+    background: rgba(17, 22, 37, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+  }
+
+  .main-nav.main-nav-open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .header-search {
+    order: 4;
+    width: 100% !important;
+  }
+
+  .viewer-page {
+    width: 100%;
+    padding: 20px 16px 48px !important;
+  }
+
+  .hero-banner {
+    height: clamp(360px, 72dvh, 480px) !important;
+    min-height: 360px;
+    border-radius: 16px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .hero-banner > div:last-child {
+    padding: 24px !important;
+  }
+
+  .hero-banner h1 {
+    font-size: clamp(2rem, 9vw, 3rem) !important;
+  }
+
+  .hero-banner p {
+    font-size: 0.92rem !important;
+  }
+
+  .hero-banner > div:last-child > div:last-child {
+    flex-wrap: wrap;
+    gap: 10px !important;
+  }
+
+  .hero-banner > div:last-child > div:last-child button {
+    flex: 1 1 180px;
+    justify-content: center;
+    padding: 12px 16px !important;
+  }
+
+  .show-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)) !important;
+    gap: 14px !important;
+  }
+
+  .poster-overlay {
+    padding: 10px;
+  }
+
+  .poster-overlay h3 {
+    font-size: 0.88rem !important;
+  }
+
+  .modal-overlay {
+    align-items: flex-start;
+    padding: 8px;
+    overflow-y: auto;
+  }
+
+  .modal-content {
+    max-height: calc(100dvh - 16px);
+    border-radius: 14px;
+  }
+
+  .detail-modal-banner {
+    height: clamp(180px, 42vw, 280px) !important;
+  }
+
+  .detail-modal-banner + div {
+    padding: 20px 16px !important;
+    margin-top: -24px !important;
+  }
+
+  .detail-modal-banner + div h2 {
+    font-size: clamp(1.5rem, 7vw, 2.2rem) !important;
+  }
+
+  .detail-modal-tabs {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .detail-modal-tabs > div {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+
+  .audio-language-select {
+    width: 100%;
+  }
+
+  .episode-row {
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 12px !important;
+  }
+
+  .episode-row > div:first-child {
+    width: clamp(88px, 27vw, 120px) !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+  }
+
+  .episode-row h4 {
+    font-size: 0.92rem !important;
+  }
+
+  .episode-row p {
+    font-size: 0.78rem !important;
+  }
+
+  .video-player-modal {
+    padding: 14px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  .header-glass {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .main-nav {
+    gap: 14px;
+  }
+
+  .header-search {
+    width: min(240px, 25vw) !important;
+  }
+
+  .viewer-page {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
 
 /* Category Pill */

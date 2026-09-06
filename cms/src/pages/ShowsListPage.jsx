@@ -64,7 +64,7 @@ export default function ShowsListPage() {
   };
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '40px auto', padding: '0 24px' }}>
+    <div className="cms-page" style={{ maxWidth: '1200px', margin: '40px auto', padding: '0 24px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
         <div>
           <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>Show Catalog Management</h1>
@@ -80,7 +80,7 @@ export default function ShowsListPage() {
       {loading ? (
         <div style={{ textAlign: 'center', padding: '60px', color: 'var(--text-muted)' }}>Loading show catalog...</div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '24px' }}>
+        <div className="cms-show-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '24px' }}>
           {shows.map(show => (
             <div key={show.id} className="glass-card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
@@ -127,7 +127,7 @@ export default function ShowsListPage() {
           background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)',
           display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
         }}>
-          <div className="glass-card" style={{ width: '100%', maxWidth: '500px', padding: '32px' }}>
+          <div className="glass-card cms-dialog" style={{ width: '100%', maxWidth: '500px', padding: '32px' }}>
             <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '20px' }}>Create New Show</h2>
             <form onSubmit={handleCreateShow}>
               <div className="form-group">

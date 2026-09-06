@@ -48,7 +48,7 @@ export default function PublishDashboardPage() {
   if (loading) return <div style={{ textAlign: 'center', padding: '60px', color: 'var(--text-muted)' }}>Analyzing validation report...</div>;
 
   return (
-    <div style={{ maxWidth: '1100px', margin: '40px auto', padding: '0 24px' }}>
+    <div className="cms-page publish-page" style={{ maxWidth: '1100px', margin: '40px auto', padding: '0 24px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
         <div>
           <h1 style={{ fontSize: '2rem', fontWeight: 700 }}>Catalog Publish Dashboard</h1>
@@ -141,7 +141,7 @@ export default function PublishDashboardPage() {
       </div>
 
       {/* Audit History Log Table */}
-      <div className="glass-card" style={{ padding: '32px' }}>
+      <div className="glass-card audit-card" style={{ padding: '32px' }}>
         <h2 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <History size={20} /> Publish Audit Log History
         </h2>

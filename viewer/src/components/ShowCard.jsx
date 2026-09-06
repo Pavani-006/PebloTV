@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import { Play } from 'lucide-react';
 
 export default function ShowCard({ show, onSelectShow }) {
-  const fallbackPosterUrl = 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&q=80';
   const [posterError, setPosterError] = useState(false);
-  const posterUrl = posterError ? fallbackPosterUrl : (show.artwork?.poster || fallbackPosterUrl);
+  const posterUrl = posterError ? null : show.artwork?.poster;
 
   return (
     <div className="poster-card" onClick={() => onSelectShow(show)}>
-      <img
-        src={posterUrl}
-        alt={show.title}
-        loading="lazy"
-        onError={() => setPosterError(true)}
-      />
+      {posterUrl ? (
+        <img
+          src={posterUrl}
+          alt={show.title}
+          loading="lazy"
+          onError={() => setPosterError(true)}
+        />
+      ) : (
+        <div className="poster-artwork-fallback" aria-label={`${show.title} artwork unavailable`}>
+          <span>{show.title}</span>
+        </div>
+      )}
       <div className="poster-overlay">
         <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'white', marginBottom: '4px' }}>{show.title}</h3>
         <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>

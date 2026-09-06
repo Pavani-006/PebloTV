@@ -1,18 +1,19 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Tv, Film, Send, LogOut, User } from 'lucide-react';
+import { Tv, Film, Send, LogOut, User, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = React.useState(false);
 
   if (!user) return null;
 
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav style={{
+    <nav className={`cms-navbar${menuOpen ? ' cms-navbar-open' : ''}`} style={{
       background: 'rgba(15, 23, 42, 0.8)',
       backdropFilter: 'blur(12px)',
       borderBottom: '1px solid var(--border-muted)',
@@ -24,7 +25,7 @@ export default function Navbar() {
       top: 0,
       zIndex: 100
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+      <div className="cms-navbar-main" style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', fontWeight: 700, fontSize: '1.25rem' }}>
           <div style={{
             background: 'linear-gradient(135deg, var(--accent-purple), var(--accent-pink))',
@@ -37,7 +38,7 @@ export default function Navbar() {
           <span>Peblo <span style={{ color: 'var(--accent-pink)' }}>CMS</span></span>
         </Link>
 
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div className="cms-nav-links" style={{ display: 'flex', gap: '8px' }}>
           <Link
             to="/"
             className={`btn-secondary ${isActive('/') ? 'active' : ''}`}
@@ -61,7 +62,17 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <button
+        type="button"
+        className="cms-mobile-menu-button"
+        aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen(open => !open)}
+      >
+        {menuOpen ? <X size={20} /> : <Menu size={20} />}
+      </button>
+
+      <div className="cms-user-menu" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
           <User size={16} />
           <span>{user.username}</span>

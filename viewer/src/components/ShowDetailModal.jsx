@@ -30,12 +30,19 @@ export default function ShowDetailModal({ show, onClose }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={e => e.stopPropagation()}>
         {/* Banner Header */}
-        <div style={{ position: 'relative', height: '280px', width: '100%', overflow: 'hidden', borderRadius: '20px 20px 0 0' }}>
-          <img
-            src={show.artwork?.banner || show.artwork?.poster || 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&q=80'}
-            alt={show.title}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          />
+        <div className="detail-modal-banner" style={{ position: 'relative', height: '280px', width: '100%', overflow: 'hidden', borderRadius: '20px 20px 0 0' }}>
+          {show.artwork?.banner || show.artwork?.poster ? (
+            <img
+              src={show.artwork.banner || show.artwork.poster}
+              alt={show.title}
+              onError={event => { event.currentTarget.style.display = 'none'; }}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          ) : (
+            <div className="detail-artwork-fallback" aria-label={`${show.title} artwork unavailable`}>
+              <span>{show.title}</span>
+            </div>
+          )}
           <button
             type="button"
             onClick={onClose}
@@ -63,7 +70,7 @@ export default function ShowDetailModal({ show, onClose }) {
           </p>
 
           {/* Season Selector Tabs */}
-          <div style={{ display: 'flex', gap: '12px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '12px', marginBottom: '24px' }}>
+          <div className="detail-modal-tabs" style={{ display: 'flex', gap: '12px', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '12px', marginBottom: '24px' }}>
             {trailers.length > 0 && (
               <button
                 onClick={() => setActiveTab(0)}
@@ -131,7 +138,7 @@ export default function ShowDetailModal({ show, onClose }) {
               {(currentSeason.episodes || [])
                 .filter(ep => selectedLanguage === 'all' || (ep.languages || []).includes(selectedLanguage))
                 .map((group, idx) => (
-                  <div key={group.content_group} style={{
+                  <div key={group.content_group} className="episode-row" style={{
                     background: 'rgba(255,255,255,0.03)',
                     border: '1px solid rgba(255,255,255,0.06)',
                     borderRadius: '14px',
@@ -145,7 +152,7 @@ export default function ShowDetailModal({ show, onClose }) {
                       background: 'rgba(255,255,255,0.05)', position: 'relative'
                     }}>
                       {group.artwork?.thumbnail ? (
-                        <img src={group.artwork.thumbnail} alt={group.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <img src={group.artwork.thumbnail} alt={group.title} onError={event => { event.currentTarget.style.display = 'none'; }} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                       ) : (
                         <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                           <Film size={24} color="var(--text-muted)" />

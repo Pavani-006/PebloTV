@@ -4,12 +4,12 @@ import { Play, Info, Sparkles } from 'lucide-react';
 export default function HeroBanner({ show, onSelectShow, onPlayShow }) {
   if (!show) return null;
 
-  const fallbackBannerUrl = 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1600&q=80';
-  const [bannerError, setBannerError] = useState(false);
-  const bannerUrl = bannerError ? fallbackBannerUrl : (show.artwork?.banner || show.artwork?.poster || fallbackBannerUrl);
+  const [bannerSourceIndex, setBannerSourceIndex] = useState(0);
+  const bannerSources = [show.artwork?.banner, show.artwork?.poster].filter(Boolean);
+  const bannerUrl = bannerSources[bannerSourceIndex];
 
   return (
-    <div style={{
+    <div className="hero-banner" style={{
       position: 'relative',
       width: '100%',
       height: '480px',
@@ -19,12 +19,18 @@ export default function HeroBanner({ show, onSelectShow, onPlayShow }) {
       boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6)',
       border: '1px solid rgba(255, 255, 255, 0.1)'
     }}>
-      <img
-        src={bannerUrl}
-        alt={show.title}
-        onError={() => setBannerError(true)}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-      />
+      {bannerUrl ? (
+        <img
+          src={bannerUrl}
+          alt={show.title}
+          onError={() => setBannerSourceIndex(index => index + 1)}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        />
+      ) : (
+        <div className="hero-artwork-fallback" aria-label={`${show.title} banner unavailable`}>
+          <span>{show.title}</span>
+        </div>
+      )}
 
       <div style={{
         position: 'absolute',

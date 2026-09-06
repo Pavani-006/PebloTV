@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { Tv, Search, Flame } from 'lucide-react';
+import { Tv, Search, Flame, Menu, X } from 'lucide-react';
 
 export default function Header({ searchQuery, setSearchQuery }) {
+  const [menuOpen, setMenuOpen] = React.useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const section = new URLSearchParams(location.search).get('section');
@@ -51,7 +52,7 @@ export default function Header({ searchQuery, setSearchQuery }) {
           </span>
         </Link>
 
-        <nav className="main-nav">
+        <nav className={`main-nav${menuOpen ? ' main-nav-open' : ''}`}>
           {navItems.map((item) => (
             <NavLink
               key={item.key}
@@ -65,7 +66,17 @@ export default function Header({ searchQuery, setSearchQuery }) {
         </nav>
       </div>
 
-      <form onSubmit={handleSearchSubmit} style={{ position: 'relative', width: '280px' }}>
+      <button
+        type="button"
+        className="mobile-menu-button"
+        aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen(open => !open)}
+      >
+        {menuOpen ? <X size={22} /> : <Menu size={22} />}
+      </button>
+
+      <form className="header-search" onSubmit={handleSearchSubmit} style={{ position: 'relative', width: '280px' }}>
         <Search size={18} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
         <input
           type="text"

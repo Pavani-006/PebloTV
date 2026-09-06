@@ -23,7 +23,7 @@ export default function SearchPage() {
   }, [query, section]);
 
   return (
-    <div style={{ maxWidth: '1400px', margin: '40px auto', padding: '0 40px' }}>
+    <div className="viewer-page search-page" style={{ maxWidth: '1400px', margin: '40px auto', padding: '0 40px' }}>
       <h1 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '8px' }}>
         {query ? `Search Results for "${query}"` : section ? `${section.toUpperCase()} Catalog` : 'Explore Catalog'}
       </h1>
@@ -34,7 +34,7 @@ export default function SearchPage() {
       {loading ? (
         <div style={{ textAlign: 'center', padding: '60px', color: 'var(--text-muted)' }}>Searching catalog...</div>
       ) : (
-        <div style={{
+        <div className="show-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
           gap: '24px'

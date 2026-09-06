@@ -30,7 +30,7 @@ export default function HomePage({ searchQuery }) {
   const categories = ['all', 'adventure', 'india', 'learning', 'music', 'science', 'stories'];
 
   return (
-    <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '32px 40px 80px' }}>
+    <div className="viewer-page" style={{ maxWidth: '1400px', margin: '0 auto', padding: '32px 40px 80px' }}>
       {/* Featured Hero Banner */}
       <HeroBanner show={featuredShow} onSelectShow={setSelectedShow} onPlayShow={setPlayingShow} />
 
@@ -63,7 +63,7 @@ export default function HomePage({ searchQuery }) {
               <Flame size={22} color="var(--accent-pink)" /> {section.name} Shows
             </h2>
 
-            <div style={{
+            <div className="show-grid" style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
               gap: '24px'

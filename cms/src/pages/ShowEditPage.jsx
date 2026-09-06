@@ -130,19 +130,19 @@ export default function ShowEditPage() {
   if (loading) return <div style={{ textAlign: 'center', padding: '60px', color: 'var(--text-muted)' }}>Loading show details...</div>;
 
   return (
-    <div style={{ maxWidth: '1200px', margin: '40px auto', padding: '0 24px' }}>
+    <div className="cms-page" style={{ maxWidth: '1200px', margin: '40px auto', padding: '0 24px' }}>
       <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', marginBottom: '24px' }}>
         <ArrowLeft size={16} /> Back to Catalog
       </Link>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '32px' }}>
+      <div className="show-edit-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '32px' }}>
         {/* Main Left Column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           {/* Metadata Form */}
           <div className="glass-card" style={{ padding: '32px' }}>
             <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '24px' }}>Show Settings & Metadata</h2>
             <form onSubmit={handleUpdateShow}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div className="form-group">
                   <label className="form-label">Title</label>
                   <input className="form-input" value={title} onChange={e => setTitle(e.target.value)} required />
@@ -156,7 +156,7 @@ export default function ShowEditPage() {
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div className="form-group">
                   <label className="form-label">Catalog Section</label>
                   <select className="form-select" value={section} onChange={e => setSection(e.target.value)}>
@@ -186,9 +186,9 @@ export default function ShowEditPage() {
 
           {/* Seasons & Episodes Section */}
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <div className="section-toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
               <h2 style={{ fontSize: '1.5rem', fontWeight: 700 }}>Seasons & Episode Manager</h2>
-              <div style={{ display: 'flex', gap: '10px' }}>
+                <div className="section-toolbar-actions" style={{ display: 'flex', gap: '10px' }}>
                 <button className="btn-secondary" onClick={() => handleAddSeason(0)}>+ Add Season 0 (Trailers)</button>
                 <button className="btn-primary" onClick={() => handleAddSeason(seasons.length > 0 ? Math.max(...seasons.map(s => s.season_number)) + 1 : 1)}>
                   <Plus size={16} /> Add Next Season
@@ -264,10 +264,10 @@ export default function ShowEditPage() {
           background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)',
           display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
         }}>
-          <div className="glass-card" style={{ width: '100%', maxWidth: '480px', padding: '32px' }}>
+            <div className="glass-card cms-dialog" style={{ width: '100%', maxWidth: '480px', padding: '32px' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: '20px' }}>Add Episode Variant</h2>
             <form onSubmit={handleCreateEpisode}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div className="form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                 <div className="form-group">
                   <label className="form-label">Episode #</label>
                   <input type="number" className="form-input" value={epNum} onChange={e => setEpNum(e.target.value)} required />
@@ -292,7 +292,7 @@ export default function ShowEditPage() {
                 <input className="form-input" value={epGroup} onChange={e => setEpGroup(e.target.value)} placeholder={`e.g. ${show.slug}-s01e0${epNum}`} required />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div className="form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                 <div className="form-group">
                   <label className="form-label">Duration (seconds)</label>
                   <input type="number" className="form-input" value={epDuration} onChange={e => setEpDuration(e.target.value)} required />
