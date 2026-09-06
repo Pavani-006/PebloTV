@@ -44,6 +44,28 @@ button {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.main-nav {
+  display: flex;
+  gap: 24px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-main);
+  text-shadow: 0 0 14px rgba(236, 72, 153, 0.65);
+}
+
+.nav-link-active {
+  color: var(--text-main);
+  text-shadow: 0 0 14px rgba(236, 72, 153, 0.65);
+}
+
 /* Movie Poster Cards */
 .poster-card {
   position: relative;
@@ -124,4 +146,61 @@ button {
   color: white;
   border-color: transparent;
   box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4);
+}
+
+.audio-language-select {
+  position: relative;
+  width: 178px;
+}
+
+.audio-language-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #0b1220;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text-main);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.audio-language-trigger:hover,
+.audio-language-trigger:focus-visible {
+  border-color: var(--accent-purple);
+  outline: none;
+}
+
+.audio-language-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 4px;
+  background: #0b1220;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.45);
+}
+
+.audio-language-option {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: var(--text-main);
+  padding: 7px 8px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.audio-language-option:hover,
+.audio-language-option.selected {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.75), rgba(6, 182, 212, 0.65));
+  color: var(--text-main) !important;
 }
