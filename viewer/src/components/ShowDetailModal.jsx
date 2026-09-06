@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { X, Play, Clock, Globe, Film, Sparkles, ChevronDown } from 'lucide-react';
+import VideoPlayerModal from './VideoPlayerModal';
 
 export default function ShowDetailModal({ show, onClose }) {
   if (!show) return null;
 
   const [activeTab, setActiveTab] = useState(show.seasons?.[0]?.season_number || (show.trailers?.length > 0 ? 0 : 1));
   const [selectedLanguage, setSelectedLanguage] = useState('all');
+  const [playingTrailer, setPlayingTrailer] = useState(null);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const languageMenuRef = useRef(null);
 
@@ -179,14 +181,20 @@ export default function ShowDetailModal({ show, onClose }) {
           {activeTab === 0 && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {trailers.map((t, idx) => (
-                <div key={t.id} style={{
+                <div
+                  key={t.id}
+                  onClick={() => t.video_url && setPlayingTrailer(t)}
+                  role={t.video_url ? 'button' : undefined}
+                  tabIndex={t.video_url ? 0 : undefined}
+                  style={{
                   background: 'rgba(236, 72, 153, 0.08)',
                   border: '1px solid rgba(236, 72, 153, 0.2)',
                   borderRadius: '14px',
                   padding: '16px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '20px'
+                  gap: '20px',
+                  cursor: t.video_url ? 'pointer' : 'default'
                 }}>
                   <div style={{ width: '120px', height: '68px', borderRadius: '8px', background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Play size={24} fill="#ec4899" color="#ec4899" />
@@ -201,6 +209,9 @@ export default function ShowDetailModal({ show, onClose }) {
           )}
         </div>
       </div>
+      {playingTrailer && (
+        <VideoPlayerModal show={playingTrailer} onClose={() => setPlayingTrailer(null)} />
+      )}
     </div>
   );
 }

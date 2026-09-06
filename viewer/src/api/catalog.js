@@ -3,6 +3,15 @@ const VIDEO_SOURCES = {
   "Moti's Many Lives": 'https://www.youtube.com/embed/1p7HEhdzVf4'
 };
 
+const TRAILER_SOURCES = {
+  "Moti's Many Lives": {
+    id: 'motis-many-lives-trailer',
+    title: "Moti's Many Lives Trailer",
+    description: 'Watch the Moti story preview.',
+    video_url: VIDEO_SOURCES["Moti's Many Lives"]
+  }
+};
+
 function normalizeMediaUrls(value) {
   if (typeof value === 'string' && value.startsWith('/media/')) {
     return `${API_BASE_URL}${value}`;
@@ -19,6 +28,10 @@ function normalizeMediaUrls(value) {
 
     if (normalized.title && !normalized.video_url && VIDEO_SOURCES[normalized.title]) {
       normalized.video_url = VIDEO_SOURCES[normalized.title];
+    }
+
+    if (normalized.title && TRAILER_SOURCES[normalized.title] && !normalized.trailers?.length) {
+      normalized.trailers = [TRAILER_SOURCES[normalized.title]];
     }
 
     return normalized;
